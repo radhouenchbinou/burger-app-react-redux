@@ -8,7 +8,7 @@ the project contains:
 
 - functions component
 - class based component
-- unkown functions
+- unknown functions
 - state,props,component lifeCycle
 - propTypes check
 - sending http requests and connecting firebase backEnd
@@ -16,7 +16,14 @@ the project contains:
 - react router
 - creating and manipulating forms
 - forms validation
-- redux / react-redux
+- redux / react-redux :
+  - reducer
+  - actions
+  - dispatcher
+  - managing state
+  - working with middleware
+  - combining reducers
+  - redux thunk & actions creator for running asynchronous function with redux
 
 ##Run the project
 
