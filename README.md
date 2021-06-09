@@ -20,8 +20,8 @@ the project contains:
 
 ##Run the project
 
-- First type npm install to install required Modules
-- Second type npm start the project will run on port 3000
+- First run command npm install to install required Modules
+- Second run command npm start the project will run on port 3000
 
 
 

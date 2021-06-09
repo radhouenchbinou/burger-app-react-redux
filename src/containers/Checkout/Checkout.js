@@ -1,13 +1,16 @@
 import React, {Component} from 'react';
-import {Route} from 'react-router-dom';
+import {Route, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux'
 
 import CheckoutSummary from '../../components/Order/CheckoutSummary/CheckoutSummary';
 import ContactData from './ContactData/ContactData';
-import {ADD_INGREDIENT, CHECKOUT, REMOVE_INGREDIENT} from "../../store/actions";
+import * as actions from '../../store/actions/index'
 
 class Checkout extends Component {
 
+    componentWillMount(){
+        this.props.onInitPurchase()
+    }
 
     checkoutCancelledHandler = () => {
         this.props.history.goBack();
@@ -18,8 +21,11 @@ class Checkout extends Component {
     }
 
     render() {
-        return (
-            <div>
+        let summary = <Redirect to="/"/>
+        if (this.props.ingredients) {
+            const purchasedRedirect = this.props.purchased? <Redirect to="/"/>:null
+            summary = (<div>
+                {purchasedRedirect}
                 <CheckoutSummary
                     ingredients={this.props.ingredients}
                     checkoutCancelled={this.checkoutCancelledHandler}
@@ -29,22 +35,24 @@ class Checkout extends Component {
                     render={
                         (props) =>
                             (<ContactData  {...props} />)}/>
-            </div>
-        );
+            </div>)
+        }
+        return summary;
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        onCheckOut: () => dispatch({type: CHECKOUT}),
+        onInitPurchase: () => dispatch(actions.purchaseInit())
     }
 }
 
 const mapStateToProps = state => {
     return {
-        ingredients: state.ingredients,
-        totalPrice: state.totalPrice
+        ingredients: state.burgerBuilder.ingredients,
+        totalPrice: state.burgerBuilder.totalPrice,
+        purchased: state.order.purchased
     }
 }
 
-export default connect(mapStateToProps)(Checkout);
+export default connect(mapStateToProps,mapDispatchToProps)(Checkout);
