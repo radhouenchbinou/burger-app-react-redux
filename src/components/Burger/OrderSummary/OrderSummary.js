@@ -6,7 +6,7 @@ import Aucx from "../../../hoc/Aucx";
 class OrderSummary extends Component {
     // This could be a functional component, doesn't have to be a class
     componentWillUpdate() {
-        console.log('[OrderSummary] WillUpdate');
+        ('[OrderSummary] WillUpdate');
     }
 
     render () {

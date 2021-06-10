@@ -4,6 +4,9 @@ import classes from './Layout.css';
 import Toolbar from '../../components/Navigation/Toolbar/Toolbar';
 import SideDrawer from '../../components/Navigation/SideDrawer/SideDrawer';
 import Aucx from "../Aucx";
+import {connect} from "react-redux";
+import {logout} from "../../store/actions/auth-actions";
+import {clearOrders} from "../../store/actions/order-actions";
 
 class Layout extends Component {
     state = {
@@ -20,11 +23,17 @@ class Layout extends Component {
         } );
     }
 
+    logoutHandler = () => {
+        this.props.logout();
+        this.props.clearOrders();
+    }
+
     render () {
         return (
             <Aucx>
-                <Toolbar drawerToggleClicked={this.sideDrawerToggleHandler} />
+                <Toolbar onLogout={this.logoutHandler} isAuthenticated={this.props.isAuthenticated} drawerToggleClicked={this.sideDrawerToggleHandler} />
                 <SideDrawer
+                    onLogout={this.logoutHandler} isAuthenticated={this.props.isAuthenticated}
                     open={this.state.showSideDrawer}
                     closed={this.sideDrawerClosedHandler} />
                 <main className={classes.Content}>
@@ -35,4 +44,17 @@ class Layout extends Component {
     }
 }
 
-export default Layout;
+const mapStateToProps = (state) => {
+    return {
+        isAuthenticated: state.auth.token !== null
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        logout: () => dispatch(logout()),
+        clearOrders: () => dispatch(clearOrders())
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Layout);

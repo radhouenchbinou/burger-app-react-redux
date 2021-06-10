@@ -1,10 +1,12 @@
 import * as actionTypes from '../actions/actionTypes';
 import {updateObject} from "../utils/actions-utility";
+import {updatePurchaseState} from "../../utils/utils";
 
 const initialState = {
     ingredients: null,
     totalPrice: 4,
     error: false,
+    building: false
 };
 
 const INGREDIENT_PRICES = {
@@ -18,6 +20,7 @@ const changeIngerient = (state, action) => {
     const updatedIngredient = action.type === actionTypes.ADD_INGREDIENT ? {[action.ingredientName]: state.ingredients[action.ingredientName] + 1} : {[action.ingredientName]: state.ingredients[action.ingredientName] - 1};
     const updatedIngredients = updateObject(state.ingredients, updatedIngredient);
     const updatedState = {
+        building: updatePurchaseState(updatedIngredients),
         ingredients: updatedIngredients,
         totalPrice: action.type === actionTypes.ADD_INGREDIENT ? state.totalPrice + INGREDIENT_PRICES[action.ingredientName] : state.totalPrice - INGREDIENT_PRICES[action.ingredientName]
     }
@@ -33,7 +36,8 @@ const setIngredient = (state, action) => {
             meat: action.ingredients.meat,
         },
         totalPrice: initialState.totalPrice,
-        error: false
+        error: false,
+        building: false
     })
 }
 

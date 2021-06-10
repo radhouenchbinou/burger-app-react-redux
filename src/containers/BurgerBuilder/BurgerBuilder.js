@@ -11,6 +11,7 @@ import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import axios from '../../axios-orders';
 import Aucx from "../../hoc/Aucx";
 import {addIngredient, initIngredients, removeIngredient,purchaseInit} from "../../store/actions/index";
+import {updatePurchaseState} from "../../utils/utils";
 
 
 class BurgerBuilder extends Component {
@@ -27,16 +28,7 @@ class BurgerBuilder extends Component {
         this.props.initPurchase()
     }
 
-    updatePurchaseState(ingredients) {
-        const sum = Object.keys(ingredients)
-            .map(igKey => {
-                return ingredients[igKey];
-            })
-            .reduce((sum, el) => {
-                return sum + el;
-            }, 0);
-        return sum > 0;
-    }
+
 
     purchaseHandler = () => {
         this.setState({purchasing: true});
@@ -68,7 +60,8 @@ class BurgerBuilder extends Component {
                         ingredientAdded={this.props.onIngredientAdded}
                         ingredientRemoved={this.props.onIngredientRemoved}
                         disabled={disabledInfo}
-                        purchasable={this.updatePurchaseState(this.props.ingredients)}
+                        purchasable={updatePurchaseState(this.props.ingredients) }
+                        isAuthenticated={this.props.isAuthenticated}
                         ordered={this.purchaseHandler}
                         price={this.props.totalPrice}/>
                 </Aucx>
@@ -105,7 +98,8 @@ const mapStateToProps = state => {
     return {
         ingredients: state.burgerBuilder.ingredients,
         totalPrice: state.burgerBuilder.totalPrice,
-        error: state.burgerBuilder.error
+        error: state.burgerBuilder.error,
+        isAuthenticated : state.auth.token !== null
     };
 }
 

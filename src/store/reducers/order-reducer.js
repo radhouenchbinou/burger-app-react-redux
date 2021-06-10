@@ -31,7 +31,7 @@ const purchaseFails = (state, action) => {
 
 const setOrders = (state, action) => {
     const fetchedOrders = [];
-    console.log(action.orders);
+    (action.orders);
     for (let key in action.orders) {
         fetchedOrders.push({
             ...action.orders[key],
@@ -55,6 +55,10 @@ const orderReducer = (state = initialState, action) => {
             return updateObject(state, {purchased: false,})
         case actionTypes.SET_ORDERS:
             return setOrders(state, action);
+        case actionTypes.CLEAR_ORDERS:
+            return updateObject(state, {
+                orders: []
+            });
         case actionTypes.FETCH_ORDER_SUCCESS:
             return updateObject(state, {
                 fetchingOrders: false,

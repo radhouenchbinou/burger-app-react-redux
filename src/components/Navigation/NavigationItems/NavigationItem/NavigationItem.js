@@ -4,11 +4,11 @@ import { NavLink } from 'react-router-dom';
 import classes from './NavigationItem.css';
 
 const navigationItem = ( props ) => (
-    <li className={classes.NavigationItem}>
+    <li className={classes.NavigationItem} onClick={props.onLogout?props.onLogout:null}>
         <NavLink 
             to={props.link}
             exact={props.exact}
-            activeClassName={classes.active}>{props.children}</NavLink>
+            activeClassName={props.onLogout?null:classes.active}>{props.children}</NavLink>
     </li>
 );
 

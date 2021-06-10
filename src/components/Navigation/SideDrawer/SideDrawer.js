@@ -18,8 +18,8 @@ const sideDrawer = ( props ) => {
                 <div className={classes.Logo}>
                     <Logo />
                 </div>
-                <nav>
-                    <NavigationItems />
+                <nav onClick={props.closed}>
+                    <NavigationItems onLogout={props.onLogout} isAuthenticated={props.isAuthenticated} />
                 </nav>
             </div>
         </Aucx>

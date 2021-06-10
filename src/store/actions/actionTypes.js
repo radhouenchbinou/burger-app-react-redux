@@ -12,4 +12,11 @@ export const FETCH_ORDER_START = 'FETCH_ORDER_START';
 export const FETCH_ORDER_FAILS = 'FETCH_ORDER_FAILS';
 export const FETCH_ORDER_SUCCESS = 'FETCH_ORDER_SUCCESS';
 export const SET_ORDERS = 'SET_ORDERS';
+export const CLEAR_ORDERS = 'CLEAR_ORDERS';
+
+export const AUTH_START = 'AUTH_START';
+export const AUTH_SUCCES = 'AUTH_SUCCES';
+export const AUTH_FAILS = 'AUTH_FAILS';
+
+export const AUTH_LOGOUT = 'AUTH_LOGOUT';
 

@@ -6,7 +6,7 @@ import {
     PURCHASE_BURGER_START,
     PURCHASE_BURGER_SUCCES,
     PURCHASE_INIT,
-    SET_ORDERS
+    SET_ORDERS, CLEAR_ORDERS
 } from "./actionTypes";
 import axios from "../../axios-orders";
 
@@ -35,12 +35,12 @@ export const setLoadingTrueWhenPurchasing = () => {
     }
 }
 
-export const purchaseBurgerStart = (order) => {
+export const purchaseBurgerStart = (order, token) => {
     return dispatch => {
         dispatch(setLoadingTrueWhenPurchasing())
-        axios.post('/orders.json', order)
+        axios.post('/orders.json?auth=' + token, order)
             .then(response => {
-                console.log(response.data)
+                (response.data)
                 dispatch(purchaseBurgerSuccess(response.data.name, order))
             })
             .catch(error => {
@@ -59,6 +59,12 @@ export const setOrders = (orders) => {
     return {
         type: SET_ORDERS,
         orders: orders
+    }
+}
+
+export const clearOrders = () => {
+    return {
+        type: CLEAR_ORDERS,
     }
 }
 
@@ -81,14 +87,14 @@ export const fetchingOrdersStart = () => {
     }
 }
 
-export const startFetchOrders = () => {
+export const startFetchOrders = (token, userId) => {
     return dispatch => {
-
         dispatch(fetchingOrdersStart());
-        axios.get('/orders.json')
+        const queryParams = '?auth=' + token + '&orderBy="userId"&equalTo="' + userId + '"';
+        axios.get('/orders.json' + queryParams)
             .then(res => {
-                console.log(res);
-                console.log(res.data)
+                (res);
+                (res.data)
                 dispatch(setOrders(res.data));
                 dispatch(fetchOrdersSuccess());
 
