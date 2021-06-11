@@ -14,7 +14,7 @@ import {addIngredient, initIngredients, removeIngredient,purchaseInit} from "../
 import {updatePurchaseState} from "../../utils/utils";
 
 
-class BurgerBuilder extends Component {
+export class BurgerBuilder extends Component {
     // constructor(props) {
     //     super(props);
     //     this.state = {...}

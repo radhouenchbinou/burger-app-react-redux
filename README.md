@@ -24,7 +24,8 @@ the project contains:
   - working with middleware
   - combining reducers
   - redux thunk & actions creator for running asynchronous function with redux
-
+- Firebase authentication
+- Lazyloading
 ##Run the project
 
 - First run command npm install to install required Modules
