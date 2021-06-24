@@ -5,7 +5,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ##Project content
 
-A burger Builder App created when learning with [Maximillian udemy react course](https://www.udemy.com/course/react-the-complete-guide-incl-redux/)
+A burger Builder App created when learning with [Maximillian udemy react course](https://www.udemy.com/course/react-the-complete-guide-incl-redux/) you can find it for free in freecoursesite.com
 the project contains:
 
 - functions component
