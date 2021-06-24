@@ -1,5 +1,7 @@
 live demo : https://burgerapp-a783c.web.app/
 
+FULL COURSE : https://freecoursesite.com/react-16-the-complete-guide-incl-react-router-4-redux-12/
+
 #React Burger Builder App redux version
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
